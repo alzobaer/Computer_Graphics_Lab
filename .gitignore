@@ -2,3 +2,5 @@
 *.o
 .vscode
 .dist
+bin/
+obj/
