@@ -29,12 +29,21 @@ int main() {
     for(int i = 0; i <= dx; i++){
         putpixel(x, y, WHITE);
         if(p < 0){
-            x = x + 1;
+            if(x1 < x2)
+                x = x + 1;
+            else
+                x = x - 1;
             p = p + 2 * dy;
         }
         else{
-            x = x + 1;
-            y = y + 1;
+            if(x1 < x2)
+                x = x + 1;
+            else
+                x = x - 1;
+            if(y1 < y2)
+                y = y + 1;
+            else
+                y = y - 1;
             p = p + 2 * dy - 2 * dx;
         }
     }
