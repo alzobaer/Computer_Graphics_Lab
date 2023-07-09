@@ -1,36 +1,32 @@
-#include<graphics.h>
-#include<stdio.h>
-#include<conio.h>
+#include <graphics.h>
+int main(){
+    int gd = DETECT, gm = 0;
+    initgraph(&gd, &gm, "");
 
-int main()
-{
-    int gd = DETECT;
-    int gm = 0;
-    initgraph(&gd,&gm,"");
+    // Code for triangle
+    setcolor(WHITE);  // Set color for the triangle
+    // Draw triangle
+    line(40, 150, 160, 160);  // Draw the below line of the triangle
+    line(40, 150, 100, 40);   // Draw the left line of the triangle
+    line(100, 40, 160, 160);  // Draw the right line of the triangle
+    setfillstyle(1, GREEN);   // Set fill pattern and color for the triangle
+    floodfill(80, 148, WHITE);  // Fill the triangle with white color
 
-    //code for triangle
-    setcolor(WHITE);
-    setfillstyle(SOLID_FILL,BLACK);
-    line(40,150,160,160);//Below line
-    line(40,150,100,40);// left line
-    line(100,40,160,160);//right line
-    setfillstyle(1, GREEN);
-    floodfill(80,148,WHITE);
-    //circle draw
+    // Code for circle
+    setcolor(CYAN);  // Set color for the circle
+    // Draw circle
+    circle(170, 170, 80);  // Draw the circle
+    setfillstyle(1, RED);  // Set fill pattern and color for the circle
+    floodfill(171, 171, CYAN);  // Fill the circle with cyan color
 
-    setcolor(CYAN);
-    circle(170,170,80);
-    setfillstyle(SOLID_FILL,BLACK);
-    setfillstyle(1,RED);
-    floodfill(171,171,CYAN);
-
-    // for rectangle
-    setcolor(WHITE);
-    rectangle(170,170,290,290);
-    setfillstyle(SOLID_FILL,BLACK);
-    setfillstyle(1, BLUE);
-    floodfill(289,289,WHITE);
+    // Code for rectangle
+    setcolor(YELLOW);  // Set color for the rectangle
+    // Draw rectangle
+    rectangle(170, 170, 290, 290);  // Draw the rectangle
+    setfillstyle(1, BLUE);  // Set fill pattern and color for the rectangle
+    floodfill(289, 289, YELLOW);  // Fill the rectangle with yellow color
 
     getch();
+    closegraph();
     return 0;
 }
