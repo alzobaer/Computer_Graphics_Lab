@@ -5,6 +5,7 @@
 using namespace std;
 
 int N, a, b;
+int xf, yf; // fixed point
 double  Sx, Sy;
 vector <double> x, y, xprime, yprime;
 
@@ -20,8 +21,8 @@ void scaling(){
 	// Perform scaling on the polygon by multiplying each vertex with scaling factors
 	for(int i = 0; i < N; i++){
 		// Compute the scaled coordinates for each vertex
-		a = Sx * x[i];
-		b = Sy * y[i];
+		a = Sx * x[i] + xf * (1-Sx);
+		b = Sy * y[i] + yf * (1-Sy);
 		xprime.push_back(a);
 		yprime.push_back(b);
 	}
@@ -51,6 +52,9 @@ int main(){
 	cout << "Enter Scaling factor \n(Sx, Sy): ";
 	cin >> Sx >> Sy;
 
+	cout << "Enter the fixed point (xf, yf): ";
+	cin >> xf >> yf;
+
 	setcolor(YELLOW);
 	drawpolygon();
 
@@ -70,5 +74,6 @@ Sample input:
 200 100
 150 200
 1.5 1.5
+150 130
 */
 

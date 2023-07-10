@@ -20,8 +20,8 @@ void printPixel(int x, int y){
 }
 
 int main(){
-	int gd = DETECT, gm = 0;
-	initgraph(&gd, &gm, "");
+	int driver = DETECT, mode = 0;
+	initgraph(&driver, &mode, "");
 
 	int p; // decision parameter
 
@@ -32,7 +32,7 @@ int main(){
 	scanf("%d", &r);
 
 	int x, y;
-	p = 1 - r;  // calculate decision parameter
+	p = 1 - r;      // calculate decision parameter
 	x = 0, y = r;   // initialize first point
 
 	while(x <= y){

@@ -4,10 +4,10 @@
 #include <math.h>
 using namespace std;
 
-int v; // number of vertices
+int v, xf, yf; // number of vertices
 double angle; // rotation angle
+vector <double> x, y, xprime, yprime;
 
-vector <int> x, y;
 
 void drawpolygon(){
 	// Draw the polygon based on the vertices
@@ -16,25 +16,27 @@ void drawpolygon(){
 		line(x[i], y[i], x[(i+1)%v], y[(i+1)%v]);
 	}
 }
-
 void rotation(){
 	// Perform rotation on the polygon by applying rotation matrix
 	for(int i = 0; i < v; i++){
-		// Apply rotation matrix to each vertex
-		double rotatedX = (x[i]*cos(angle) - y[i]*sin(angle));
-		double rotatedY = (x[i]*sin(angle) + y[i]*cos(angle));
-		double nextRotatedX = (x[(i+1)%v]*cos(angle) - y[(i+1)%v]*sin(angle));
-		double nextRotatedY = (x[(i+1)%v]*sin(angle) + y[(i+1)%v]*cos(angle));
+		double a = xf + ((x[i]-xf)*cos(angle) - (y[i]-yf)*sin(angle));
+		double b = yf + ((x[i]-xf)*sin(angle) + (y[i]-yf)*cos(angle));
+		xprime.push_back(a);
+		yprime.push_back(b);
+	}
+}
 
-		// Draw line segment between rotated vertices
-		line(rotatedX, rotatedY, nextRotatedX, nextRotatedY);
+void drawRotatedPolygon(){
+	// Draw the scaled polygon based on the scaled vertices
+	setcolor(YELLOW);
+	for(int i = 0; i < v; i++){
+		line(xprime[i], yprime[i], xprime[(i+1)%v], yprime[(i+1)%v]);
 	}
 }
 
 int main(){
-	int gd = DETECT;
-    int gm = 0;
-    initgraph(&gd,&gm,"");
+	int driver = DETECT, mode = 0;
+    initgraph(&driver,&mode, "");
 
 	int a, b;
 	cout << "Enter Number of vertices: ";
@@ -51,6 +53,9 @@ int main(){
 	cout << "Theta: ";
 	cin >> angle;
 
+	cout << "Enter Fixed point (xf, yf): ";
+	cin >> xf >> yf;
+
 	// Convert the angle from degrees to radians
 	angle = (angle*3.1416)/180;
 
@@ -59,12 +64,12 @@ int main(){
 
 	setcolor(YELLOW);
 	rotation();
+	drawRotatedPolygon();
 
 	getch();
 	closegraph();
 	return 0;
 }
-
 
 /*
 	Sample input:
@@ -74,5 +79,6 @@ int main(){
 		400 300
 		200 300
 		30
+		200 100
 	*/
 
